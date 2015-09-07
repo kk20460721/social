@@ -11,7 +11,7 @@ class SocialTwitterFormatter {
    * {@inheritdoc}
    */
   public function __construct() {
-    $this->expire = variable_get('social_twitter_cache', 600);
+    $this->expire = variable_get('social_comments_twitter_cache', 600);
   }
 
   /**

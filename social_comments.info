@@ -1,0 +1,8 @@
+name = Social Comments
+description = Provide social fields
+core = 7.x
+dependencies[] = field
+configure = admin/config/system/social-comments
+files[] = includes/social_comments.google.inc
+files[] = includes/social_comments.facebook.inc
+files[] = includes/social_comments.twitter.inc

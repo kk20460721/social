@@ -1,7 +1,0 @@
-name = Social Comment
-description = Provide social fields
-core = 7.x
-dependencies[] = field
-dependencies[] = libraries
-configure = admin/config/system/social-comments
-files[] = includes/social.google.inc

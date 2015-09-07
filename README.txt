@@ -22,16 +22,14 @@ FEATURES
 
 TEMPLATE (THEME HOOK) SUGGESTIONS
 
-social_items--[entity_type]
-social_items--[bundle]
-social_items--[type]
-social_items--[type]--[bundle]
+social-comments-items--[entity_type]
+social-comments-items--[bundle]
+social-comments-items--[type]
+social-comments-items--[type]--[bundle]
 
 [entity_type] - name of entity type. E.g. node, taxonomy_term.
 [bundle] - name of bundle. E.g. article, page, tags.
 [type] - is a type of a field. E.g. google or facebook.
 
 CREDITS
-
-The idea and sponsorship by Drucode (http://drucode.com).
 Developer Max Petyurenko.

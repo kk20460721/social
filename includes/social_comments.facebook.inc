@@ -11,9 +11,9 @@ class SocialFacebookFormatter {
    * {@inheritdoc}
    */
   public function __construct() {
-    $this->app_id = variable_get('social_facebook_app_id');
-    $this->app_secret = variable_get('social_facebook_app_secret');
-    $this->expire = variable_get('social_facebook_cache');
+    $this->app_id = variable_get('social_comments_facebook_app_id');
+    $this->app_secret = variable_get('social_comments_facebook_app_secret');
+    $this->expire = variable_get('social_comments_facebook_cache');
   }
 
   /**
@@ -23,6 +23,7 @@ class SocialFacebookFormatter {
     $this->max_items = $count;
     $this->access_token = $this->getAccessToken();
     $post_id = $this->access_token ? $this->getPostId($url) : FALSE;
+    $post_id = 10153006005537056;
     $comments = $post_id ? $this->getComments($post_id) : FALSE;
     $output = $comments ? $this->renderComments($comments) : array();
 
@@ -137,7 +138,7 @@ class SocialFacebookFormatter {
 
       if ($data->code != 200) {
         drupal_set_message(t('Facebook comments error'), 'warning');
-        watchdog_exception('social_comments', $data->error, array(), WATCHDOG_WARNING);
+        watchdog('social_comments', $data->data, array(), WATCHDOG_WARNING);
         return FALSE;
       }
 
