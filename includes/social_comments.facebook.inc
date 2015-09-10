@@ -23,7 +23,6 @@ class SocialFacebookFormatter {
     $this->max_items = $count;
     $this->access_token = $this->getAccessToken();
     $post_id = $this->access_token ? $this->getPostId($url) : FALSE;
-    $post_id = 10153006005537056;
     $comments = $post_id ? $this->getComments($post_id) : FALSE;
     $output = $comments ? $this->renderComments($comments) : array();
 
@@ -86,17 +85,33 @@ class SocialFacebookFormatter {
    *   Post ID.
    */
   protected function getPostId($url) {
-    $id = FALSE;
+    $id = $uid = '';
 
     if (is_string($url)) {
       // Get URL path.
       $url = parse_url($url);
-      if (!empty($url['query'])) {
-        parse_str($url['query'], $query);
-      }
+      if (!empty($url['path'])) {
+        $parts = explode('/', $url['path']);
 
-      if (isset($query['fbid'])) {
-        $id = $query['fbid'];
+        // Get user ID.
+        $username = $parts[1];
+
+        $response_url = url(
+          'https://graph.facebook.com/' . $username,
+          array(
+            'query' => array(
+              'access_token' => $this->access_token,
+            ),
+          )
+        );
+        $data = drupal_http_request($response_url);
+        if ($data) {
+          $data = drupal_json_decode($data->data);
+          $uid = $data['id'];
+        }
+
+        $id = $uid;
+        $id .= '_' . end($parts);
       }
     }
 
@@ -184,6 +199,7 @@ class SocialFacebookFormatter {
 
         $data['id'] = check_plain($item['id']);
         $data['username'] = !empty($user['name']) ? check_plain($user['name']) : NULL;
+        $data['user_url'] = !empty($userid) ? url('https://www.facebook.com/' . $userid) : NULL;
         $data['userphoto'] = !empty($userid) ? $this->getUserPhoto($userid) : NULL;
         $data['text'] = filter_xss($item['message']);
         $data['timestamp'] = strtotime($item['created_time']);

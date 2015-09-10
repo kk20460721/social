@@ -191,14 +191,14 @@ function social_comments_field_formatter_info() {
   );
 
   // @todo: Rewrite facebook implementation.
-//  $formatters['social_comments_facebook'] = array(
-//    'label' => t('Social comments (Facebook)'),
-//    'field types' => array('social_comments_field'),
-//    'multiple values' => FIELD_BEHAVIOR_DEFAULT,
-//    'settings' => array(
-//      'count' => 0,
-//    ),
-//  );
+  $formatters['social_comments_facebook'] = array(
+    'label' => t('Social comments (Facebook)'),
+    'field types' => array('social_comments_field'),
+    'multiple values' => FIELD_BEHAVIOR_DEFAULT,
+    'settings' => array(
+      'count' => 0,
+    ),
+  );
 
   // @todo: Write own implementation.
 //  $library = libraries_detect('acTwitterConversation');

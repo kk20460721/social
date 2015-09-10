@@ -24,13 +24,13 @@
       <div class="attribution">
         <article>
           <div class="item">
-            <a href="<?php print $comment['user_url']; ?>"><?php print $comment['userphoto']; ?></a>
+            <a rel="nofollow" href="<?php print $comment['user_url']; ?>"><?php print $comment['userphoto']; ?></a>
           </div>
         </article>
         <div class="submitted">
           <p class="commenter-name">
             <span rel="schema:author">
-              <a href="<?php print $comment['user_url']; ?>"><?php print $comment['username']; ?></a>
+              <a rel="nofollow" href="<?php print $comment['user_url']; ?>"><?php print $comment['username']; ?></a>
             </span>
           </p>
           <p class="comment-time">
